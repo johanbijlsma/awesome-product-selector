@@ -1,14 +1,20 @@
 <template>
   <div class="container about">
-    <h1>This is an about page</h1>
+    <div class="intro">
+      <h1 class="page-title">Posters</h1>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam, amet!</p>
+    </div>
   </div>
 </template>
 
 <style>
-@media (min-width: 1024px) {
-  .about {
-    display: flex;
-    align-items: center;
-  }
+.about {
+  display: grid;
+  grid-auto-rows: auto;
+  grid-template-columns: 250px 1fr;
+}
+
+.intro {
+  grid-column: 2;
 }
 </style>

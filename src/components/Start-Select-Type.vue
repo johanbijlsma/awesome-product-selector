@@ -24,7 +24,9 @@ const productTypes = [
 <template>
   <ul class="container product-types">
     <li v-for="productType in productTypes" :key="productType.id" :class="productType.slug">
-      <RouterLink :to="productType.url"> {{ productType.name }}</RouterLink>
+      <RouterLink :to="productType.url">
+        <span class="link">{{ productType.name }}</span></RouterLink
+      >
     </li>
   </ul>
 </template>
@@ -57,12 +59,6 @@ const productTypes = [
         background-color: var(--print-secondary50);
     } */
   }
-  & li {
-    background-color: var(--print-grey50);
-    transition: all 0.3s ease-in-out;
-    background-size: cover;
-    background-blend-mode: multiply;
-  }
   & li.posters {
     background-image: url('../assets/posters-bg.jpg');
   }
@@ -72,11 +68,38 @@ const productTypes = [
   & li.business-cards {
     background-image: url('../assets/businesscards-bg.jpg');
   }
+  & li {
+    /* background-image: linear-gradient(45deg, black, var(--print-secondary50)); */
+    transition: all 0.3s ease-in-out;
+    background-size: cover;
+    background-blend-mode: multiply;
+    border-radius: 7px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    position: relative;
+    & span.link {
+      position: relative;
+      z-index: 5;
+    }
+  }
+  & li::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 3;
+  }
+  & li:hover::after {
+    background-color: rgba(0, 0, 0, 0.2);
+  }
   & li:hover {
-    background-color: var(--print-secondary50);
     background-blend-mode: hue;
     background-size: 150%;
     transition: all 0.3s ease-in-out;
+    cursor: pointer;
   }
 }
 </style>
