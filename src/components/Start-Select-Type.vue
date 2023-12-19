@@ -22,23 +22,26 @@ const productTypes = [
 </script>
 
 <template>
-  <ul class="container product-types">
-    <li v-for="productType in productTypes" :key="productType.id" :class="productType.slug">
-      <RouterLink :to="productType.url">
-        <span class="link">{{ productType.name }}</span></RouterLink
-      >
-    </li>
-  </ul>
+  <div class="container product-types">
+    <RouterLink
+      v-for="productType in productTypes"
+      :key="productType.id"
+      :class="productType.slug"
+      :to="productType.url"
+    >
+      <span class="link">{{ productType.name }}</span></RouterLink
+    >
+  </div>
 </template>
 
 <style scoped>
 .product-types {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   gap: 1rem;
-  list-style: none;
   justify-content: space-between;
-  & > li a {
+  flex-wrap: wrap;
+  & > a {
     color: var(--print-secondary);
     text-rendering: optimizeLegibility;
     text-shadow:
@@ -48,31 +51,29 @@ const productTypes = [
     text-decoration: none;
     font-size: 34px;
     min-width: 300px;
+    flex-grow: 1;
+    width: 100%;
+    height: 100%;
     aspect-ratio: 1/1;
     border-radius: 7px;
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: all 0.3s ease-in-out;
-    /* &:hover {
-        color: var(--white);
-        background-color: var(--print-secondary50);
-    } */
+    transition: all 250ms ease-in-out;
   }
-  & li.posters {
+  & a.posters {
     background-image: url('../assets/posters-bg.jpg');
   }
-  & li.flyers {
+  & a.flyers {
     background-image: url('../assets/flyers-bg.jpg');
   }
-  & li.business-cards {
+  & a.business-cards {
     background-image: url('../assets/businesscards-bg.jpg');
   }
-  & li {
-    /* background-image: linear-gradient(45deg, black, var(--print-secondary50)); */
+  & a {
     transition: all 0.3s ease-in-out;
     background-size: cover;
-    background-blend-mode: multiply;
+    /* background-blend-mode: multiply; */
     border-radius: 7px;
     overflow: hidden;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
@@ -80,9 +81,10 @@ const productTypes = [
     & span.link {
       position: relative;
       z-index: 5;
+      display: block;
     }
   }
-  & li::after {
+  & a::after {
     content: '';
     position: absolute;
     top: 0;
@@ -92,14 +94,32 @@ const productTypes = [
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 3;
   }
-  & li:hover::after {
-    background-color: rgba(0, 0, 0, 0.2);
+  & a:hover::after,
+  & a:focus::after {
+    background-color: var(--print-primary50);
   }
-  & li:hover {
-    background-blend-mode: hue;
+  & a:hover,
+  & a:focus {
+    background-blend-mode: lighten;
     background-size: 150%;
+    scale: 1.01;
     transition: all 0.3s ease-in-out;
     cursor: pointer;
+    & span.link {
+      color: var(--black);
+      text-shadow:
+        1px 1px var(--print-grey50),
+        1px 1px var(--white);
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .product-types {
+    flex-direction: row;
+    & > a {
+      max-width: max-content;
+    }
   }
 }
 </style>

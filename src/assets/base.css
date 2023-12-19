@@ -1,8 +1,14 @@
 :root {
   --print-primary: #ff0048;
-  --print-secondary: #33f95e;
-  --print-secondary50: rgba(51, 249, 94, 0.5);
+  --print-primary50: rgba(255, 0, 72, 0.5);
+  --print-secondary: #ffb700;
+  --print-secondary50: rgba(255, 183, 0, 0.5);
+  --print-tertiary: #00ffb7;
+  --print-tertiary50: rgba(0, 255, 183, 0.5);
+  --print-quaternary: #0048ff;
+  --print-quaternary50: rgba(0, 72, 255, 0.5);
   --print-grey: #d9d9d9;
   --print-grey50: rgba(217, 217, 217, 0.5);
   --white: #fff;
+  --black: #000;
 }
