@@ -4,6 +4,7 @@ import { ref } from 'vue'
 
 function goToPrintType() {
   selection.value.selectedSize = ref(size.value.selectedASize)
+  selection.value.selectedSizeParent = ref(size.value.selectedSizeParent)
   progress.value = ref(2)
 }
 
@@ -158,7 +159,8 @@ const size = ref({
   ]
 })
 const selection = ref({
-  selectedSize: ''
+  selectedSize: '',
+  selectedSizeParent: ''
 })
 const orders = ref([])
 </script>
@@ -183,7 +185,6 @@ const orders = ref([])
             name="poster-size"
             id="a-formaten"
             value="a-formaten"
-            checked
             v-model="size.selectedSizeParent"
           />A-formaten</label
         >
@@ -239,6 +240,13 @@ const orders = ref([])
       </div>
     </template>
     <template v-if="progress.value === 2">
+      <div class="step-block step-block-small step-1-small">
+        <h2 class="step-title">1. Size</h2>
+        <p class="selected-size selected-size-parent">
+          {{ selection.selectedSizeParent }}
+        </p>
+        <p class="selected-size">{{ selection.selectedSize }}</p>
+      </div>
       <aside class="step2">
         <h2 class="step-title">2. Print Type</h2>
       </aside>
@@ -249,7 +257,6 @@ const orders = ref([])
             name="poster-size"
             id="a-formaten"
             value="a-formaten"
-            checked
             v-model="size.selectedSizeParent"
           />A-formaten</label
         >
@@ -304,7 +311,7 @@ const orders = ref([])
         <button class="primary" @click="goToPrintType">Go to Print type</button>
       </div>
     </template>
-    <pre>{{ posters }}</pre>
+    <pre>{{ Posterdata }}</pre>
   </div>
 </template>
 
@@ -401,7 +408,24 @@ h2.step-title {
       width: 100%;
     }
   }
+  &.step-block-small {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    max-width: fit-content;
+    border-top: var(--print-primary) 4px solid;
+    padding-top: 1rem;
+    & p.selected-size {
+      margin-block: 00.25rem;
+      font-size: 1.375rem;
+      font-style: normal;
+      font-weight: 600;
+      line-height: normal;
+      text-transform: uppercase;
+    }
+  }
 }
+
 .button-container {
   display: flex;
   justify-content: flex-end;
