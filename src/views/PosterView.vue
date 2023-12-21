@@ -832,7 +832,6 @@ h2.step-title {
 .progress-container {
   display: flex;
   flex-wrap: wrap;
-  grid-column-start: 2;
   gap: 8px;
 }
 
@@ -872,6 +871,9 @@ button.primary {
   }
   .button-container {
     grid-column: 2;
+  }
+  .progress-container {
+    grid-column-start: 2;
   }
 }
 </style>
